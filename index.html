@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="navbar">
+    <h1>Gallery</h1>
+  </div>
+  <div class="full-img" id="full">
+    <button class="left" onclick="preimg()"> <<</button>
+    <img src="" id="fullimg">
+    <button class="right" onclick="nextimg()"> >></button>
+    <span onclick="closefullimg()" class="close">X</span>
+  </div>
+  <div class="images">
+    <img src="imges/img1.webp" onclick="openfullimg(this.src,id)" class="photo" id="1">
+    <img src="imges/img2.webp" onclick="openfullimg(this.src,id)" class="photo" id="2">
+    <img src="imges/img3.webp" onclick="openfullimg(this.src,id)" class="photo" id="3">
+    <img src="imges/img4.jpeg" onclick="openfullimg(this.src,id)" class="photo" id="4">
+    <img src="imges/img5.jpeg" onclick="openfullimg(this.src,id)" class="photo" id="5">
+    <img src="imges/img6.webp" onclick="openfullimg(this.src,id)" class="photo" id="6">
+    <img src="imges/img7.webp" onclick="openfullimg(this.src,id)" class="photo" id="7">
+    <img src="imges/img8.webp" onclick="openfullimg(this.src,id)" class="photo" id="8">
+  </div>
+
+</body>
+<script>
+  let imgindex;
+  var full=document.getElementById("full")
+  var fullimg=document.getElementById("fullimg")
+  var imgs=document.querySelectorAll(".photo")
+  let n=imgs.length;
+  let left=document.querySelector(".left")
+  let right=document.querySelector(".right")
+
+  function openfullimg(pic,id){
+    full.style.display="flex";
+    fullimg.src=pic;
+    imgindex=Number(id);
+    console.log(imgindex)
+    if(imgindex==1){
+      left.style.display="none";
+      right.style.display="block";
+    }
+    else if(imgindex==8){
+      right.style.display="none";
+      left.style.display="block";
+    }
+    else{
+      right.style.display="block";
+      left.style.display="block";
+    }
+  }
+  
+
+  function closefullimg(){
+    full.style.display="none";
+  }
+
+
+  function preimg(){
+    console.log(imgindex)
+    if(imgindex==1){
+      left.style.display="none";
+      right.style.display="block";
+    }
+    else{
+      right.style.display="block";
+      left.style.display="block";
+    }
+    imgindex-=1
+    fullimg.src=imgs[imgindex].src;
+  }
+
+  function nextimg(){
+    console.log(imgindex)
+    if(imgindex==n-2){
+      right.style.display="none";
+      left.style.display="block";
+    }
+    else{
+      right.style.display="block";
+      left.style.display="block";
+    }
+    imgindex+=1
+    fullimg.src=imgs[imgindex].src;
+  }
+
+</script>
+</html>
